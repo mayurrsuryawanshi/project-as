@@ -1,0 +1,60 @@
+Online Phone Shop Display Using MySQL
+To create an online phone shop, we need to store some data and then retrieve it
+when the user clicks on details. In this project, we will first add and then 
+retrieve the data. This will be two calls to the database. The first page will show all the phones (names) and 
+a link ‘more details,’ and once the user clicks on the link, all the phone details will be shown. 
+This project will not show the UI part but will write corresponding queries to get the correct data. 
+Let’s first create the table and store some data.
+Create database phone;
+Use phone;
+Create table phone_details(name varchar(100), description varchar(255), availability char, price float, in_stock int, rating float);
+insert into phone_details values ('Samsung 7x', 'phone with 8mp camera & voice recording', 'y', 3999.0, 3, 4.5),
+insert into phone_details values ('sony 98x', 'phone with 32GB memory & Bluetooth', 'y', 6999.0, 5, 4),
+insert into phone_details values ('realme 3', 'phone with 8mp camera & wifi calling', 'y', 4999.0, 10, 3.5),
+insert into phone_details values ('one plus 4', 'phone with 64GB memory, wifi, Bluetooth, 16mp camera', 'y', 9999.0, 7, 4.5);
+
+select name from phone_details;
+number of records:4
+           name
+Samsung 7x
+sony 98x
+realme 3
+one plus 4
+
+select description, price, in_stock, rating from phone_details;
+
+
+number of records:4
+description	price	in_stock	rating
+phone with 8mp camera & voice recording	3999.0	3	4.5
+phone with 32GB memory & Bluetooth	6999.0	5	4
+phone with 8mp camera & wifi calling	4999.0	10	3.5
+phone with 64GB memory, wifi, Bluetooth	9999.0	7	4.5
+
+Select max(rating) from phone_details;
+
+Max(rating)
+4.5
+
+Select name from phone_details
+Where rating=(Select max(rating) from phone_details);
+
+name
+Samsung 7x
+one plus 4
+  
+Select * from phone_details
+Where price between 3999 and 6999;
+
+description	price	in_stock	rating
+phone with 8mp camera & voice recording	3999.0	3	4.5
+phone with 8mp camera & wifi calling	4999.0	10	3.5
+phone with 32GB memory & Bluetooth	6999.0	5	4
+
+Select avg(rating)from phone_details;
+
+Avg(rating)
+4.125
+
+
+
