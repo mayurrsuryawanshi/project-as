@@ -1,0 +1,125 @@
+
+Code
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('create database books')
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('show databases')
+for x in mycursor:
+    print(x)
+​
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('use books')
+for x in mycursor:
+    print(x)
+​
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('create table book_details (book_name varchar(100), author_name varchar(100), book_description varchar(255), price float, in_stock int, primary_keyword varchar(10),secondary_keyword varchar(10), rating float)')
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('show tables')
+for x in mycursor:
+    print(x)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('show tables')
+for x in mycursor:
+    print(x)
+('book_details',)
+print(mycursor.rowcount,'record inserted')
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+sql = 'insert into book_details values ("Thinking in Java", "Bruce Eckel", "Java programming basics", 3000, 5, "Java", "JVM", 4.5)'
+mycursor.execute(sql)
+mydb.commit()
+print(mycursor.rowcount,'record inserted')
+1 record inserted
+)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select book_name,author_name,rating from book_details')
+for x in mycursor:
+    print(x)
+('Let us C', 'Yashwant K.', 4.5)
+('Let us C++', 'Yashwant K', 4.5)
+('Head first Java', 'Kathy Sierra', 3.5)
+('Java: The complete reference', 'Mc Graw Hill', 4.0)
+('Thinking in Java', 'Bruce Eckel', 4.5)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select max(rating)from book_details')
+for x in mycursor:
+    print(x)
+(4.5,)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select book_name from book_details where rating = (select max(rating)from book_details)')
+for x in mycursor:
+    print(x)
+('Let us C',)
+('Let us C++',)
+('Thinking in Java',)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select * from book_details where in_stock between 3 and 10')
+for x in mycursor:
+    print(x)
+('Let us C', 'Yashwant K.', 'Learn C programming', 200.25, 3, 'C', 'software', 4.5)
+('Let us C++', 'Yashwant K', 'Learn C++ programming', 230.25, 5, 'C++', 'C', 4.5)
+('Head first Java', 'Kathy Sierra', 'Learn Java programming', 330.0, 10, 'Java', 'JVM', 3.5)
+('Java: The complete reference', 'Mc Graw Hill', '7th edition, learn Java programming', 783.0, 4, 'Java', 'Javabeans', 4.0)
+('Thinking in Java', 'Bruce Eckel', 'Java programming basics', 3000.0, 5, 'Java', 'JVM', 4.5)
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select avg(in_stock)from book_details')
+for x in mycursor:
+    print(x)
+(Decimal('5.4000'),)
